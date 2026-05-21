@@ -1,49 +1,235 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-  margin:0;
-  overflow:hidden;
-  background:black;
-  font-family:Arial;
+    overflow:hidden;
+    background:#020814;
+    font-family:Arial, sans-serif;
 }
 
-#map{
-  width:100vw;
-  height:100vh;
+/* =========================
+   RADAR
+========================= */
+#radar{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background-color:#000;
+
+    /* FUNDO */
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.75)
+        ),
+
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(0,255,255,0.15),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 70% 40%,
+            rgba(0,255,120,0.12),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(0,100,255,0.14),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle,
+            rgba(0,255,255,0.18),
+            transparent 60%
+        ),
+
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 500'%3E%3Cg fill='rgba(0,255,255,0.08)' stroke='%2300ffff' stroke-width='2' opacity='0.25'%3E%3Cpath d='M140 180 L220 140 L320 170 L360 250 L300 330 L180 310 L120 240 Z'/%3E%3Cpath d='M290 330 L350 340 L390 470 L320 490 L260 420 Z'/%3E%3Cpath d='M650 120 L760 140 L820 240 L780 380 L690 420 L610 300 L590 190 Z'/%3E%3Cpath d='M470 130 L540 120 L570 180 L520 240 L460 210 Z'/%3E%3C/g%3E%3C/svg%3E");
+
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
 }
 
-#goLive{
-  position:absolute;
-  z-index:1000;
-  top:20px;
-  left:20px;
-  padding:15px 30px;
-  border:none;
-  border-radius:12px;
-  background:red;
-  color:white;
-  font-size:22px;
-  cursor:pointer;
-  font-weight:bold;
-  box-shadow:0 0 20px rgba(255,0,0,0.7);
+/* =========================
+   GRADE / EFEITO RADAR
+========================= */
+#radar::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(0,255,255,0.04) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,255,255,0.04) 1px,
+            transparent 1px
+        );
+
+    background-size:60px 60px;
+    z-index:1;
 }
 
+/* =========================
+   VINHETA ESCURA
+========================= */
+#radar::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 20%,
+            rgba(0,0,0,0.85) 100%
+        );
+
+    z-index:2;
+    pointer-events:none;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.titulo{
+    position:absolute;
+    top:20px;
+    left:20px;
+
+    color:#00e5ff;
+    font-size:40px;
+    font-weight:bold;
+
+    text-shadow:
+        0 0 10px #00e5ff,
+        0 0 20px #00e5ff;
+
+    z-index:10;
+}
+
+/* =========================
+   PAINEL
+========================= */
 #painel{
-  position:absolute;
-  z-index:1000;
-  right:20px;
-  top:20px;
-  width:250px;
-  background:rgba(0,0,0,0.8);
-  color:white;
-  padding:15px;
-  border-radius:12px;
-  border:1px solid #00ffcc;
+    position:absolute;
+    top:20px;
+    right:20px;
+
+    width:280px;
+    padding:20px;
+    border-radius:20px;
+
+    color:#fff;
+    background:rgba(0,0,0,0.5);
+    border:2px solid #00e5ff;
+
+    box-shadow:
+        0 0 15px #00e5ff;
+
+    z-index:10;
 }
 
 #painel h2{
-  margin-top:0;
-  color:#00ffcc;
+    color:#00e5ff;
+    margin-bottom:15px;
 }
 
-.info{
-  margin-bottom:10px;
+#painel p{
+    line-height:1.7;
+}
+
+/* =========================
+   ROTAS
+========================= */
+.rota{
+    position:absolute;
+    height:4px;
+
+    background:cyan;
+    border-radius:20px;
+
+    box-shadow:
+        0 0 15px cyan;
+
+    z-index:5;
+}
+
+/* =========================
+   AVIÕES
+========================= */
+.aviao{
+    position:absolute;
+    font-size:45px;
+    cursor:pointer;
+
+    z-index:999;
+
+    text-shadow:
+        0 0 10px yellow,
+        0 0 20px yellow;
+}
+
+/* =========================
+   TRILHA
+========================= */
+.trilha{
+    position:absolute;
+    top:23px;
+    right:30px;
+
+    width:90px;
+    height:3px;
+
+    opacity:0.7;
+    border-radius:10px;
+
+    background:yellow;
+
+    box-shadow:
+        0 0 10px yellow;
+}
+
+/* =========================
+   MAPA FUNDO
+========================= */
+#mapa-fundo{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    opacity:0.25;
+    z-index:0;
+}
+
+/* =========================
+   CONTINENTES
+========================= */
+.continente{
+    position:absolute;
+
+    border:2px solid rgba(0,255,255,0.3);
+
+    background:
+        rgba(0,255,255,0.05);
+
+    box-shadow:
+        0 0 20px rgba(0,255,255,0.2);
+
+    filter:
+        drop-shadow(0 0 15px cyan);
 }

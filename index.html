@@ -1,40 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flight Tracker</title>
-
+<title>Flight Radar Offline</title>
 <link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 </head>
-
 <body>
 
-<button id="goLive">GO LIVE</button>
-
-<div id="painel">
-  <h2>RADAR</h2>
-
-  <div class="info">
-    <b>Status:</b> Online
-  </div>
-
-  <div class="info">
-    <b>Voos ativos:</b> <span id="contador">0</span>
-  </div>
-
-  <div class="info">
-    <b>Modo:</b> Rastreamento
-  </div>
+<!-- RADAR -->
+<div id="radar">
+<div id="mapa-fundo">
+    <div class="continente brasil"></div>
+    <div class="continente argentina"></div>
+    <div class="continente chile"></div>
+    <div class="continente africa"></div>
 </div>
 
-<div id="map"></div>
+    <!-- ROTAS -->
+    <div class="rota rota1"></div>
+    <div class="rota rota2"></div>
+    <div class="rota rota3"></div>
+    <div class="rota rota4"></div>
+    <div class="rota rota5"></div>
+    <div class="rota rota6"></div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- AVIÕES -->
+    <div class="aviao" id="aviao1">
+        🛩️
+    </div>
+    <div class="aviao" id="aviao2">
+        ✈️
+    </div>
+    <div class="aviao" id="aviao3">
+        ✈️
+    </div>
+    <div class="aviao" id="aviao4">
+✈️
+</div>
+<div class="aviao" id="aviao5">
+🛩️
+</div>
+<div class="aviao" id="aviao6">
+🛩️
+</div>
+</div>
+
+<!-- TÍTULO -->
+<div class="titulo">
+✈ FLIGHT RADAR OFFLINE
+</div>
+<!-- PAINEL -->
+<div id="painel">
+<h2>INFORMAÇÕES</h2>
+<p id="info">
+Clique em um avião
+
+</p>
+</div>
 <script src="script.js"></script>
-
 </body>
 </html>
