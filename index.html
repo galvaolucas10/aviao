@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Tracker</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<body>
+
+<button id="goLive">GO LIVE</button>
+
+<div id="painel">
+  <h2>RADAR</h2>
+
+  <div class="info">
+    <b>Status:</b> Online
+  </div>
+
+  <div class="info">
+    <b>Voos ativos:</b> <span id="contador">0</span>
+  </div>
+
+  <div class="info">
+    <b>Modo:</b> Rastreamento
+  </div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
