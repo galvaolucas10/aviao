@@ -197,106 +197,488 @@ aviao6.style.transform =
 "rotate(120deg)";
 }
 // LOOP
+// ==========================
+// =======================================
+// FUNÇÃO PARA RESETAR AVIÃO
+// =======================================
+
+function reiniciarAviao(
+    aviao,
+    dados
+){
+
+    dados.x = dados.inicioX;
+    dados.y = dados.inicioY;
+
+    dados.angulo =
+    dados.anguloInicial;
+
+    dados.curva = false;
+}
+
+
+// =======================================
 // AVIÃO 1
-setTimeout(() => {
-    setInterval(() => {
-        x1 += 1.2;
-        y1 -= 0.6;
-        if(x1 > window.innerWidth){
-            x1 = -200;
-            y1 = 600;
-        }
-        aviao1.style.left =
-        x1 + "px";
-        aviao1.style.top =
-        y1 + "px";
-        aviao1.style.transform =
-        "rotate(-20deg)";
-    }, 16);
-}, 1000);
-// AVIÃO 2
-setTimeout(() => {
-    setInterval(() => {
-        x2 -= 1.1;
-        y2 += 0.5;
-        if(x2 < -200){
-            x2 = window.innerWidth + 200;
-            y2 = 150;
-        }
-        aviao2.style.left =
-        x2 + "px";
-        aviao2.style.top =
-        y2 + "px";
-        aviao2.style.transform =
-        "rotate(140deg)";
-    }, 16);
-}, 8000);
-// AVIÃO 3
-setTimeout(() => {
-    setInterval(() => {
-        x3 -= 1;
-        y3 -= 0.5;
-        if(y3 < -200){
-            x3 = 900;
-            y3 = window.innerHeight + 200;
-        }
-        aviao3.style.left =
-        x3 + "px";
-        aviao3.style.top =
-        y3 + "px";
-        aviao3.style.transform =
-        "rotate(-130deg)";
-    }, 16);
-}, 15000);
-// AVIÃO 4
-setTimeout(() => {
-    setInterval(() => {
-        x4 += 1;
-        y4 += 0.5;
-        if(x4 > window.innerWidth + 200){
-            x4 = -200;
-            y4 = 100;
-        }
-        aviao4.style.left =
-        x4 + "px";
-        aviao4.style.top =
-        y4 + "px";
-        aviao4.style.transform =
-        "rotate(35deg)";
-    }, 16);
-}, 22000);
-// AVIÃO 5
-setTimeout(() => {
-    setInterval(() => {
-        x5 -= 1.2;
-        y5 -= 0.4;
-        if(x5 < -200){
-            x5 = window.innerWidth + 200;
-            y5 = 500;
-        }
-        aviao5.style.left =
-        x5 + "px";
-        aviao5.style.top =
-        y5 + "px";
-        aviao5.style.transform =
-        "rotate(-140deg)";
-    }, 16);
-}, 30000);
-// AVIÃO 6
-setTimeout(() => {
-    setInterval(() => {
-        x6 -= 0.9;
-        y6 += 0.6;
-        if(y6 > window.innerHeight + 200){
-            x6 = 1000;
-            y6 = -200;
-        }
-        aviao6.style.left =
-        x6 + "px";
-        aviao6.style.top =
-        y6 + "px";
-        aviao6.style.transform =
-        "rotate(120deg)";
-    }, 16);
-}, 38000);
+// =======================================
+
+let dados1 = {
+
+    x:100,
+    y:150,
+
+    inicioX:100,
+    inicioY:150,
+
+    angulo:0,
+    anguloInicial:0,
+
+    curva:false
 };
+
+setTimeout(() => {
+
+    setInterval(() => {
+
+        // RETO
+        if(!dados1.curva){
+
+            dados1.x += 2;
+
+            if(dados1.x >= 600){
+
+                dados1.curva = true;
+            }
+        }
+
+        // CURVA
+        else if(dados1.angulo < 1.5){
+
+            dados1.angulo += 0.02;
+
+            dados1.x +=
+            Math.cos(dados1.angulo) * 2;
+
+            dados1.y +=
+            Math.sin(dados1.angulo) * 2;
+        }
+
+        // RETO FINAL
+        else{
+
+            dados1.x +=
+            Math.cos(dados1.angulo) * 2;
+
+            dados1.y +=
+            Math.sin(dados1.angulo) * 2;
+        }
+
+        aviao1.style.left =
+        dados1.x + "px";
+
+        aviao1.style.top =
+        dados1.y + "px";
+
+        aviao1.style.transform =
+        `rotate(${dados1.angulo * 57}deg)`;
+
+        // REAPARECE
+        if(
+            dados1.x > window.innerWidth + 200 ||
+            dados1.y > window.innerHeight + 200
+        ){
+
+            reiniciarAviao(
+                aviao1,
+                dados1
+            );
+        }
+
+    }, 16);
+
+}, 0);
+
+
+// =======================================
+// AVIÃO 2
+// =======================================
+
+let dados2 = {
+
+    x:1400,
+    y:220,
+
+    inicioX:1400,
+    inicioY:220,
+
+    angulo:Math.PI,
+    anguloInicial:Math.PI,
+
+    curva:false
+};
+
+setTimeout(() => {
+
+    setInterval(() => {
+
+        if(!dados2.curva){
+
+            dados2.x -= 2;
+
+            if(dados2.x <= 700){
+
+                dados2.curva = true;
+            }
+        }
+
+        else if(dados2.angulo < 4.3){
+
+            dados2.angulo += 0.018;
+
+            dados2.x +=
+            Math.cos(dados2.angulo) * 2;
+
+            dados2.y +=
+            Math.sin(dados2.angulo) * 2;
+        }
+
+        else{
+
+            dados2.x +=
+            Math.cos(dados2.angulo) * 2;
+
+            dados2.y +=
+            Math.sin(dados2.angulo) * 2;
+        }
+
+        aviao2.style.left =
+        dados2.x + "px";
+
+        aviao2.style.top =
+        dados2.y + "px";
+
+        aviao2.style.transform =
+        `rotate(${dados2.angulo * 57}deg)`;
+
+        if(
+            dados2.x < -200 ||
+            dados2.y > window.innerHeight + 200
+        ){
+
+            reiniciarAviao(
+                aviao2,
+                dados2
+            );
+        }
+
+    }, 16);
+
+}, 2000);
+
+
+// =======================================
+// AVIÃO 3
+// =======================================
+
+let dados3 = {
+
+    x:500,
+    y:900,
+
+    inicioX:500,
+    inicioY:900,
+
+    angulo:-1.5,
+    anguloInicial:-1.5,
+
+    curva:false
+};
+
+setTimeout(() => {
+
+    setInterval(() => {
+
+        if(!dados3.curva){
+
+            dados3.y -= 2;
+
+            if(dados3.y <= 300){
+
+                dados3.curva = true;
+            }
+        }
+
+        else if(dados3.angulo < 0.3){
+
+            dados3.angulo += 0.015;
+
+            dados3.x +=
+            Math.cos(dados3.angulo) * 2;
+
+            dados3.y +=
+            Math.sin(dados3.angulo) * 2;
+        }
+
+        else{
+
+            dados3.x +=
+            Math.cos(dados3.angulo) * 2;
+
+            dados3.y +=
+            Math.sin(dados3.angulo) * 2;
+        }
+
+        aviao3.style.left =
+        dados3.x + "px";
+
+        aviao3.style.top =
+        dados3.y + "px";
+
+        aviao3.style.transform =
+        `rotate(${dados3.angulo * 57}deg)`;
+
+        if(
+            dados3.x > window.innerWidth + 200 ||
+            dados3.y < -200
+        ){
+
+            reiniciarAviao(
+                aviao3,
+                dados3
+            );
+        }
+
+    }, 16);
+
+}, 4000);
+
+
+// =======================================
+// AVIÃO 4
+// =======================================
+
+let dados4 = {
+
+    x:-200,
+    y:500,
+
+    inicioX:-200,
+    inicioY:500,
+
+    angulo:0,
+    anguloInicial:0,
+
+    curva:false
+};
+
+setTimeout(() => {
+
+    setInterval(() => {
+
+        if(!dados4.curva){
+
+            dados4.x += 1.8;
+
+            if(dados4.x >= 900){
+
+                dados4.curva = true;
+            }
+        }
+
+        else if(dados4.angulo < 1.2){
+
+            dados4.angulo += 0.02;
+
+            dados4.x +=
+            Math.cos(dados4.angulo) * 2;
+
+            dados4.y +=
+            Math.sin(dados4.angulo) * 2;
+        }
+
+        else{
+
+            dados4.x +=
+            Math.cos(dados4.angulo) * 2;
+
+            dados4.y +=
+            Math.sin(dados4.angulo) * 2;
+        }
+
+        aviao4.style.left =
+        dados4.x + "px";
+
+        aviao4.style.top =
+        dados4.y + "px";
+
+        aviao4.style.transform =
+        `rotate(${dados4.angulo * 57}deg)`;
+
+        if(
+            dados4.x > window.innerWidth + 200 ||
+            dados4.y > window.innerHeight + 200
+        ){
+
+            reiniciarAviao(
+                aviao4,
+                dados4
+            );
+        }
+
+    }, 16);
+
+}, 6000);
+
+
+// =======================================
+// AVIÃO 5
+// =======================================
+
+let dados5 = {
+
+    x:1600,
+    y:650,
+
+    inicioX:1600,
+    inicioY:650,
+
+    angulo:Math.PI,
+    anguloInicial:Math.PI,
+
+    curva:false
+};
+
+setTimeout(() => {
+
+    setInterval(() => {
+
+        if(!dados5.curva){
+
+            dados5.x -= 2;
+
+            if(dados5.x <= 800){
+
+                dados5.curva = true;
+            }
+        }
+
+        else if(dados5.angulo < 4.1){
+
+            dados5.angulo += 0.014;
+
+            dados5.x +=
+            Math.cos(dados5.angulo) * 2;
+
+            dados5.y +=
+            Math.sin(dados5.angulo) * 2;
+        }
+
+        else{
+
+            dados5.x +=
+            Math.cos(dados5.angulo) * 2;
+
+            dados5.y +=
+            Math.sin(dados5.angulo) * 2;
+        }
+
+        aviao5.style.left =
+        dados5.x + "px";
+
+        aviao5.style.top =
+        dados5.y + "px";
+
+        aviao5.style.transform =
+        `rotate(${dados5.angulo * 57}deg)`;
+
+        if(
+            dados5.x < -200 ||
+            dados5.y > window.innerHeight + 200
+        ){
+
+            reiniciarAviao(
+                aviao5,
+                dados5
+            );
+        }
+
+    }, 16);
+
+}, 8000);
+
+
+// =======================================
+// AVIÃO 6
+// =======================================
+
+let dados6 = {
+
+    x:900,
+    y:-200,
+
+    inicioX:900,
+    inicioY:-200,
+
+    angulo:1.5,
+    anguloInicial:1.5,
+
+    curva:false
+};
+
+setTimeout(() => {
+
+    setInterval(() => {
+
+        if(!dados6.curva){
+
+            dados6.y += 2;
+
+            if(dados6.y >= 400){
+
+                dados6.curva = true;
+            }
+        }
+
+        else if(dados6.angulo < 3){
+
+            dados6.angulo += 0.017;
+
+            dados6.x +=
+            Math.cos(dados6.angulo) * 2;
+
+            dados6.y +=
+            Math.sin(dados6.angulo) * 2;
+        }
+
+        else{
+
+            dados6.x +=
+            Math.cos(dados6.angulo) * 2;
+
+            dados6.y +=
+            Math.sin(dados6.angulo) * 2;
+        }
+
+        aviao6.style.left =
+        dados6.x + "px";
+
+        aviao6.style.top =
+        dados6.y + "px";
+
+        aviao6.style.transform =
+        `rotate(${dados6.angulo * 57}deg)`;
+
+        if(
+            dados6.x < -200 ||
+            dados6.y > window.innerHeight + 200
+        ){
+
+            reiniciarAviao(
+                aviao6,
+                dados6
+            );
+        }
+
+    }, 16);
+
+}, 10000);
+}
